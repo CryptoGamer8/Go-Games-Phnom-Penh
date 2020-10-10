@@ -1,2 +1,10 @@
 # Go-Games-Phnom-Penh
 This is a Go online application.
+
+## npm官网
+
+https://npmjs.org/
+
+## ejs(Effective Javascript templating)
+
+http://ejs.co/
