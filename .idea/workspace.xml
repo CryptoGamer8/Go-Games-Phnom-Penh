@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2237015-10e9-417e-b231-8c77d6e4a15e" name="Default Changelist" comment="chatroom skeleton">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b2237015-10e9-417e-b231-8c77d6e4a15e" name="Default Changelist" comment=".gitnore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602327660225</updated>
       <workItem from="1602354040895" duration="8762000" />
-      <workItem from="1602488913994" duration="631000" />
+      <workItem from="1602488913994" duration="716000" />
     </task>
     <task id="LOCAL-00001" summary="chatroom skeleton">
       <created>1602489140574</created>
@@ -110,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602489140574</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".gitnore">
+      <created>1602489927878</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602489927878</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +136,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="chatroom skeleton" />
-    <option name="LAST_COMMIT_MESSAGE" value="chatroom skeleton" />
+    <MESSAGE value=".gitnore" />
+    <option name="LAST_COMMIT_MESSAGE" value=".gitnore" />
   </component>
   <component name="WindowStateProjectService">
     <state x="209" y="52" width="1071" height="748" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602411333205">
@@ -161,10 +168,10 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="54" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1602411379701" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1602489189786">
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1602489932192">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1602489189786" />
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1602489932192" />
     <state x="303" y="65" width="598" height="735" key="find.popup" timestamp="1602354438225">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
