@@ -8,18 +8,19 @@ const port = config.port;	//port大于1024随便定
 
 //request, response
 const server = http.createServer((req,res) => {
-	fs.readFile('./HTML/index.html','utf-8',function(err,data){
+	console.log('req.url:' + req.url)
+	fs.readFile('./HTML/flap.html','utf-8',function(err,data){
 		if(err){
 			res.setHeader('Content-Type','text/plain');
 			res.statusCode = 404;
 			res.end('Not Found');
-			console.log('Request url not found');
+			console.log(err)
 		}
 		else{
 			res.setHeader('Content-Type','text/html');
 			res.statusCode = 200;
 			res.end(data);
-			console.log('find index.html successfully!');
+			console.log('find flap.html successfully!');
 		}
 	})
 })
