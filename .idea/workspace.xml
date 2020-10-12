@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2237015-10e9-417e-b231-8c77d6e4a15e" name="Default Changelist" comment=".gitnore">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="b2237015-10e9-417e-b231-8c77d6e4a15e" name="Default Changelist" comment=".gitnore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +44,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602353487879" />
@@ -164,14 +163,18 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="333" y="121" key="RollbackChangesDialog/0.23.1280.777@0.23.1280.777" timestamp="1602411211847" />
-    <state x="54" y="23" key="SettingsEditor" timestamp="1602411379701">
+    <state x="193" y="23" key="SettingsEditor" timestamp="1602490892052">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="54" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1602411379701" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1602489932192">
+    <state x="193" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1602490892052" />
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1602490840818">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1602489932192" />
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1602490840818" />
+    <state x="441" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602490836739">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="441" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1602490836739" />
     <state x="303" y="65" width="598" height="735" key="find.popup" timestamp="1602354438225">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
