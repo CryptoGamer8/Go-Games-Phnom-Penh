@@ -14,4 +14,3 @@ http://ejs.co/
 http://mongodb.github.io/node-mongodb-native/
 
 npm install mongodb [--save]
-
