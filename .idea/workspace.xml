@@ -19,7 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2237015-10e9-417e-b231-8c77d6e4a15e" name="Default Changelist" comment=".gitnore" />
+    <list default="true" id="b2237015-10e9-417e-b231-8c77d6e4a15e" name="Default Changelist" comment=".gitnore">
+      <change afterPath="$PROJECT_DIR$/src/Resources/chessPieces.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/goBoard19x19.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/img/goBoard19x19.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/goBoard9x9.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/img/goBoard9x9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTML/chessPieces.css" beforeDir="false" afterPath="$PROJECT_DIR$/TestCode/HTML/chessPieces.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTML/flap.html" beforeDir="false" afterPath="$PROJECT_DIR$/TestCode/HTML/flap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTML/forum.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/TestCode/HTML/forum.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HTML/goBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mongodb/mongofunc.js" beforeDir="false" afterPath="$PROJECT_DIR$/TestCode/mongodb/mongofunc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/myApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/myApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/myExpress/myApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/TestCode/myExpress/myApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/TestCode/test.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +63,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1602353487879" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Resources" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -56,13 +71,18 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/public" />
+      <recent name="$PROJECT_DIR$/TestCode" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/Resources" />
+      <recent name="$PROJECT_DIR$/src/public" />
       <recent name="$PROJECT_DIR$/src/HTML" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.simpleChat.js">
+  <component name="RunManager" selected="Node.js.myApp.js">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -115,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602489927878</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=".gitnore">
+      <created>1602490903439</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1602490903439</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,22 +170,22 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="209" y="52" width="1071" height="748" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777@0.23.1280.777" timestamp="1602411333205" />
-    <state width="1238" height="184" key="GridCell.Tab.0.bottom" timestamp="1602425975609">
+    <state width="1238" height="184" key="GridCell.Tab.0.bottom" timestamp="1602577079736">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1238" height="184" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602425975609" />
-    <state width="1238" height="184" key="GridCell.Tab.0.center" timestamp="1602425975608">
+    <state width="1238" height="184" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1602577079736" />
+    <state width="1238" height="184" key="GridCell.Tab.0.center" timestamp="1602577079735">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1238" height="184" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1602425975608" />
-    <state width="1238" height="184" key="GridCell.Tab.0.left" timestamp="1602425975607">
+    <state width="1238" height="184" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1602577079735" />
+    <state width="1238" height="184" key="GridCell.Tab.0.left" timestamp="1602577079735">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1238" height="184" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1602425975607" />
-    <state width="1238" height="184" key="GridCell.Tab.0.right" timestamp="1602425975609">
+    <state width="1238" height="184" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1602577079735" />
+    <state width="1238" height="184" key="GridCell.Tab.0.right" timestamp="1602577079736">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1238" height="184" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1602425975609" />
+    <state width="1238" height="184" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1602577079736" />
     <state x="333" y="121" key="RollbackChangesDialog" timestamp="1602411211847">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -167,14 +194,14 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="193" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1602490892052" />
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1602490840818">
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2" timestamp="1602490907170">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1602490840818" />
-    <state x="441" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602490836739">
+    <state x="240" y="151" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1602490907170" />
+    <state x="441" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602575991011">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="441" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1602490836739" />
+    <state x="441" y="332" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1602575991011" />
     <state x="303" y="65" width="598" height="735" key="find.popup" timestamp="1602354438225">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
