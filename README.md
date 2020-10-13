@@ -8,3 +8,10 @@ https://npmjs.org/
 ## ejs(Effective Javascript templating)
 
 http://ejs.co/
+
+## mongodb连接
+
+http://mongodb.github.io/node-mongodb-native/
+
+npm install mongodb [--save]
+

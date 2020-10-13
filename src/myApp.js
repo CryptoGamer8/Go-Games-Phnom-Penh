@@ -28,7 +28,6 @@ const server = http.createServer((req,res) => {
 	})
 });
 
-
 server.listen(port, hostname, () => {
 	console.log(`Server running at http://${hostname}:${port}/`);
 });
@@ -42,4 +41,3 @@ function showForm(p_posts,res){
 	res.statusCode = 200;
 	res.end(data);
 }
-
