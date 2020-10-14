@@ -15,3 +15,8 @@ http://mongodb.github.io/node-mongodb-native/
 
 npm install mongodb [--save]
 
+### run server
+node myApp.js
+
+### html
+/HTML/goBoard.html
