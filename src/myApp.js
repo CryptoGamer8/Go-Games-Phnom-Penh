@@ -67,5 +67,3 @@ io.on("connection", function (socket) {
 		io.emit("user disconnected", socket.userId);
 	});
 });
-
-server.listen(3000);
