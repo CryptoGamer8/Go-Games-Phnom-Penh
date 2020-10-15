@@ -32,3 +32,4 @@ timeElapse = (top, left) => {
     endTime = new Date();
     console.log(endTime - startTime)
 }
+
