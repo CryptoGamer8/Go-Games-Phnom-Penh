@@ -16,9 +16,22 @@ app.use(express.static(publicPath));
 // Socket setup
 const io = socket(server);
 const activeUsers = new Set();
+var board = {
+	"XSize": 0,		//x grid size
+	"YSize": 0,		//y grid size
+	"XMargin": 0,	//x top left of chess grid
+	"YMargin": 0   //y top left of chess grid
+}
 
 io.on("connection", function(socket) {
 	console.log("Socket connection was created");
+	socket.on("boarder config", function(data){
+		board["XSize"] = data["XSize"];
+		board["YSize"] = data["YSize"];
+		board["XMargin"] = data["XMargin"];
+		board["YMargin"] = data["YMargin"];
+	});
+
 	socket.on("new user", function (data) {
 		socket.userId = data;
 		activeUsers.add(data);
@@ -30,10 +43,10 @@ io.on("connection", function(socket) {
 		console.log("new user socket being called");
 	});
 
-	socket.on("place piece", function (data){
+	socket.on("place piece", (data) => {
 		//modify this
 		if (true){
-			io.emit("place piece", data);
+			io.emit("place piece", getPrecisePos(data));
 			console.log('place piece socket being called');
 		}
 	});
@@ -43,4 +56,24 @@ io.on("connection", function(socket) {
 		io.emit("user disconnected", socket.userId);
 		console.log("disconnect socket being called");
 	});
+
+	//test code here
+	// socket.on("test boardClick",(data) => {
+	// 	console.log(data["offsetX"]);
+	// 	console.log(data["offsetY"]);
+	// });
 });
+
+const getPrecisePos = (data) => {
+	if(Object.keys(data).length!=3){
+		console.log("getPrecisePos data format is wrong");
+		return;
+	}
+	var x = Math.round((data["offsetX"] - board["XMargin"])/board["XSize"]);
+	var y = Math.round((data["offsetY"] - board["YMargin"])/board["YSize"]);
+	return {
+		"player": data["player"],
+		"offsetX": x*board["XSize"] + board["XMargin"],
+		"offsetY": y*board["YSize"] + board["YMargin"]
+	}
+}

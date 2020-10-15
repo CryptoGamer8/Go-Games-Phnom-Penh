@@ -1,14 +1,14 @@
 .blackChessPiece {
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
   background-color: black;
   border-radius: 50%;
   display: inline-block;
 }
 
 .whiteChessPiece {
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
   background-color: white;
   border-radius: 50%;
   display: inline-block;

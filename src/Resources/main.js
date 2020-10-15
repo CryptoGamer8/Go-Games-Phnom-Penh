@@ -1,8 +1,9 @@
 const socket = io();
 
-const gridSide = 76 //side length of board grid in px
-const topLeft = [45, 45] //coordinate of top left corner of gameboard, in X, Y
-const activePlayers = [`black`, `white`]
+const gridSize = 76; //side length of board grid in px
+const XMargin = 45; //coordinate of top left corner of gameboard
+const YMargin = 45;
+const activePlayers = [`black`, `white`];
 
 var goboard = document.getElementById("goboard");
 var player = `Viewer`;
@@ -10,7 +11,7 @@ var userName;
 
 const placePiece = (color, top, left) => {
     const piece = `<div class="${color}ChessPiece"
-         style="position:absolute; top:${top}px; left:${left}px" >
+         style="position:absolute; top:${top+gridSize/2}px; left:${left+gridSize/2}px" >
     </div>`;
     goboard.innerHTML += piece;
 }
@@ -21,13 +22,26 @@ const boardClick = (data) => {
         "offsetX": data.offsetX,
         "offsetY": data.offsetY 
     });
+
+    //test code here
+    // socket.emit("test boardClick",{
+    //     "offsetX": data.offsetX,
+    //     "offsetY": data.offsetY
+    // })
     // console.log(data.offsetX, data.offsetY)
 }
 
 const gameStart = (user) => {
     userName = user || `User${Math.floor(Math.random() * 1000000)}`;
-    socket.emit("new user", userName);
+    
 
+    socket.emit("boarder config",{
+        "XSize":gridSize,
+        "YSize":gridSize,
+        "XMargin":XMargin,
+        "YMargin":YMargin
+    })
+    socket.emit("new user", userName);
     socket.on("new user", function (data) {
 
     });
