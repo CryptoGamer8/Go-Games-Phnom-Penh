@@ -18,23 +18,29 @@ const io = socket(server);
 const activeUsers = new Set();
 
 io.on("connection", function(socket) {
-	console.log("Made socket connection");
+	console.log("Socket connection was created");
 	socket.on("new user", function (data) {
 		socket.userId = data;
 		activeUsers.add(data);
 		// Assign a side to user, here size: 1->black, 2->white, 3+->viewer
-		io.emit("assign side", [activeUsers.size, socket.userId]);
+		io.emit("assign side", {
+			"userNum":activeUsers.size, 
+			"userID":socket.userId
+		});
+		console.log("new user socket being called");
 	});
 
 	socket.on("place piece", function (data){
 		//modify this
 		if (true){
 			io.emit("place piece", data);
+			console.log('place piece socket being called');
 		}
-	})
+	});
 
 	socket.on("disconnect", () => {
 		activeUsers.delete(socket.userId);
 		io.emit("user disconnected", socket.userId);
+		console.log("disconnect socket being called");
 	});
 });
