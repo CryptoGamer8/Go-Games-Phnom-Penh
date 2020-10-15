@@ -16,3 +16,19 @@ MongoClient.connect("mongodb://localhost:27017/gogamesphnompenh", function (err,
         });
     });       
 });
+
+test = () => {
+    for (i = 0; i < 650; i+=3) {
+        for (j = 0; j < 650; j += 3){
+            timeElapse(i, j);
+        }
+    }
+}
+
+timeElapse = (top, left) => {
+    startTime = new Date();
+    board = document.getElementById("goboard");
+    placePiece('black', top, left)
+    endTime = new Date();
+    console.log(endTime - startTime)
+}
