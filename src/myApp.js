@@ -75,6 +75,18 @@ io.on("connection", function(socket) {
 		}
 	});
 
+	socket.on("transfer deleted piece pos",(pos)=>{
+		//modify this
+		if(true){
+			pos = getPrecisePos(pos);
+			//tell if piece exist
+			if(true){
+				io.emit("delete piece", pos);
+				console.log('delete piece being called');
+			}
+		}
+	})
+
 	socket.on("disconnect", () => {
 		activeUsers.delete(socket.userId);
 		io.emit("user disconnected", socket.userId);
