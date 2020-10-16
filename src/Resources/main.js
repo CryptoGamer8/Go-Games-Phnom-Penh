@@ -8,27 +8,32 @@ const boardSize = 9;
 var goboard = document.getElementById("goboard");
 
 var user = {
-   
+
 };
 
 // modify this later. read from .css
 var chessPiecesRadius = -5;
 
-const placePiece = (color, top, left) => {
-    if(color=='white' || color=='black'){
-        const piece = `<div class="${color}ChessPiece"
-             style="position:absolute; top:${top+chessPiecesRadius}px; left:${left+chessPiecesRadius}px" >
-        </div>`;
-        goboard.innerHTML += piece;
-    }
+const placePiece = (color, x, y) => {
+    const piece = `<div class="${color}ChessPiece"
+         style="position:absolute; left:${x}px; top:${y}px" >
+    </div>`;
+    goboard.innerHTML += piece;
 }
 
 const boardClick = (data) => {
     socket.emit("place piece", {
-        "color": user["color"], 
+        "color": user["color"],
         "offsetX": data.offsetX,
         "offsetY": data.offsetY 
     });
+
+    //test code here
+    // socket.emit("test boardClick",{
+    //     "offsetX": data.offsetX,
+    //     "offsetY": data.offsetY
+    // })
+    // console.log(data.offsetX, data.offsetY)
 }
 
 const gameStart = () => {
@@ -38,7 +43,7 @@ const gameStart = () => {
         "XMargin":XMargin,
         "YMargin":YMargin
     });
-    
+
     socket.emit("new visitor", `User${Math.floor(Math.random() * 1000000)}`);
 
     socket.on("new user", function (data) {
@@ -60,11 +65,8 @@ const gameStart = () => {
         }
     });
 
-    //delete test
-    
-
-    socket.on("draw piece", function(data){
-        placePiece(data["color"], data["offsetY"], data["offsetX"])
+    socket.on("place piece", function(data){
+        placePiece(data["player"], data["offsetX"], data["offsetY"])
     })
 
     socket.on("user disconnected", function (userName) {
