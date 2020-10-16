@@ -16,10 +16,17 @@ var chessPiecesRadius = -5;
 
 const placePiece = (color, top, left) => {
     if(color=='white' || color=='black'){
-        const piece = `<div class="${color}ChessPiece"
+        var piece = document.createElement("div");
+        piece.innerHTML = `<div class="${color}ChessPiece"
              style="position:absolute; top:${top+chessPiecesRadius}px; left:${left+chessPiecesRadius}px" >
         </div>`;
-        goboard.innerHTML += piece;
+        goboard.appendChild(piece);
+    }
+}
+
+const deletePiece = (top, left) => {
+    if(true){
+        
     }
 }
 
@@ -59,8 +66,6 @@ const gameStart = () => {
             }
         }
     });
-
-    //delete test
 
     socket.on("draw piece", function(data){
         placePiece(data["color"], data["offsetY"], data["offsetX"])

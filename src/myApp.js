@@ -60,7 +60,7 @@ io.on("connection", function(socket) {
 
 		io.emit("new user",user); //emit user information
 		io.emit("board status", existPiece);
-		
+
 		console.log("new user socket being called");
 	});
 
@@ -80,12 +80,6 @@ io.on("connection", function(socket) {
 		io.emit("user disconnected", socket.userId);
 		console.log("disconnect socket being called");
 	});
-
-	//test code here
-	// socket.on("test boardClick",(data) => {
-	// 	console.log(data["offsetX"]);
-	// 	console.log(data["offsetY"]);
-	// });
 });
 
 const getPrecisePos = (data) => {
