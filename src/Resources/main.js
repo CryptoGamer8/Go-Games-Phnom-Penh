@@ -27,13 +27,6 @@ const boardClick = (data) => {
         "offsetX": data.offsetX,
         "offsetY": data.offsetY 
     });
-
-    //test code here
-    // socket.emit("test boardClick",{
-    //     "offsetX": data.offsetX,
-    //     "offsetY": data.offsetY
-    // })
-    // console.log(data.offsetX, data.offsetY)
 }
 
 const gameStart = () => {
