@@ -61,7 +61,6 @@ const gameStart = () => {
     });
 
     //delete test
-    
 
     socket.on("draw piece", function(data){
         placePiece(data["color"], data["offsetY"], data["offsetX"])
