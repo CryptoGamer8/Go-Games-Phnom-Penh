@@ -25,9 +25,7 @@ const placePiece = (color, top, left) => {
 }
 
 const deletePiece = (top, left) => {
-    if(true){
-        
-    }
+    if(true){}
 }
 
 const boardClick = (data) => {
