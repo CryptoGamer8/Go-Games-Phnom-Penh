@@ -84,6 +84,10 @@ io.on("connection", function(socket) {
 				console.log('delete piece being called');
 			}
 		}
+	});
+
+	socket.on("change delete flag", (deleteFlag) => {
+		io.emit("change client delete flag", deleteFlag);
 	})
 
 	socket.on("disconnect", () => {

@@ -28,7 +28,6 @@ const placePiece = (color, top, left) => {
 }
 
 const deletePiece = (targetID) => {
-    // all returns [45,45] if there is a piece
     if(true){
         var elem = document.getElementById(targetID);
         elem.remove();   
@@ -36,7 +35,7 @@ const deletePiece = (targetID) => {
 }
 
 const deleteOn = () => {
-    deleteFlag = !deleteFlag;
+    socket.emit("change delete flag", !deleteFlag)
     console.log("delete flag has been changed!");
 }
 
@@ -48,8 +47,6 @@ const boardClick = (data) => {
             "offsetY": data.offsetY 
         });
     }else{
-        console.log(data.target);
-        console.log(data.target.id)
         socket.emit("transfer deleted piece",data.target.id);
     }
     
@@ -83,6 +80,10 @@ const gameStart = () => {
             }
         }
     });
+
+    socket.on("change client delete flag", function(_deleteFlag){
+        deleteFlag = _deleteFlag;
+    })
 
     socket.on("draw piece", function(data){
         placePiece(data["color"], data["offsetY"], data["offsetX"]);
