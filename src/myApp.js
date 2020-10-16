@@ -9,6 +9,7 @@ const app = express();
 const server = app.listen(PORT, function () {
 	console.log(`Listening on http://localhost:${PORT}`);
 });
+const boardSize = 9;
 
 // Static files
 app.use(express.static(publicPath));
@@ -16,15 +17,24 @@ app.use(express.static(publicPath));
 // Socket setup
 const io = socket(server);
 const activeUsers = new Set();
+
 var board = {
 	"XSize": 0,		//x grid size
 	"YSize": 0,		//y grid size
 	"XMargin": 0,	//x top left of chess grid
 	"YMargin": 0   //y top left of chess grid
+};
+
+var user = {
+	"userName":"root",
+	"color":"viewer"
 }
+
+var existPiece = createPieceRocords();
 
 io.on("connection", function(socket) {
 	console.log("Socket connection was created");
+
 	socket.on("boarder config", function(data){
 		board["XSize"] = data["XSize"];
 		board["YSize"] = data["YSize"];
@@ -32,22 +42,36 @@ io.on("connection", function(socket) {
 		board["YMargin"] = data["YMargin"];
 	});
 
-	socket.on("new user", function (data) {
-		socket.userId = data;
-		activeUsers.add(data);
+	socket.on("new visitor", function (_userName) {
+		userName = _userName;
+		socket.userId = userName;
+		user = {
+			"userName":userName,
+			"color": "viewer"
+			};
+		if(activeUsers.size==0) {
+			user.color="black";
+		}
+		else if(activeUsers.size==1) {
+			user.color="white";
+		}
 		// Assign a side to user, here size: 1->black, 2->white, 3+->viewer
-		io.emit("assign side", {
-			"userNum":activeUsers.size, 
-			"userID":socket.userId
-		});
+		activeUsers.add(user);
+
+		io.emit("new user",user); //emit user information
+		io.emit("board status", existPiece);
+		
 		console.log("new user socket being called");
 	});
 
 	socket.on("place piece", (data) => {
 		//modify this
+		console.log(data);
 		if (true){
-			io.emit("place piece", getPrecisePos(data));
+			data = getPrecisePos(data);
+			io.emit("draw piece", data);
 			console.log('place piece socket being called');
+			console.log(existPiece);
 		}
 	});
 
@@ -71,9 +95,34 @@ const getPrecisePos = (data) => {
 	}
 	var x = Math.round((data["offsetX"] - board["XMargin"])/board["XSize"]);
 	var y = Math.round((data["offsetY"] - board["YMargin"])/board["YSize"]);
+	
+	if(0 <=x< boardSize && 0<=y<boardSize){
+		if(data["color"]=='black'){
+			existPiece[x][y] = 1;
+		}
+		else if(data["color"]=='white'){
+			existPiece[x][y] = 2;
+		}
+		else{
+			existPiece[x][y] = 0;
+		}
+	}
 	return {
-		"player": data["player"],
+		"color": data["color"],
 		"offsetX": x*board["XSize"] + board["XMargin"],
 		"offsetY": y*board["YSize"] + board["YMargin"]
 	}
 }
+
+function createPieceRocords() {
+	var arr = new Array(boardSize);
+	for(var i = 0;i<boardSize;i++){
+		arr[i] = new Array(boardSize);
+	}
+	return arr;
+}
+
+//pieceData: [x,y,color] color: 1-> black, 0->white.
+const drawBoard = (pieceData) => {
+
+} 
