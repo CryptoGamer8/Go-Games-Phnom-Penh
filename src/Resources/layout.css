@@ -14,6 +14,22 @@
     font-size: 30px;
 }
 
+.blackChessPiece {
+    height: 65px;
+    width: 65px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.whiteChessPiece {
+    height: 65px;
+    width: 65px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 .goboard {
     grid-column-start: 1;
     grid-column-end: 4;

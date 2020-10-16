@@ -23,7 +23,7 @@ const placePiece = (color, x, y) => {
 
 const boardClick = (data) => {
     socket.emit("place piece", {
-        "color": user["color"],
+        "player": user["player"],
         "offsetX": data.offsetX,
         "offsetY": data.offsetY 
     });
@@ -58,7 +58,7 @@ const gameStart = () => {
         }
     });
 
-    socket.on("place piece", function(data){
+    socket.on("draw piece", function(data){
         placePiece(data["player"], data["offsetX"], data["offsetY"])
     })
 
