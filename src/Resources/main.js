@@ -15,23 +15,28 @@ var deleteFlag = false;
 
 // modify this later. read from .css
 var chessPiecesRadius = -5;
+var pieceID = 0;
 
 const placePiece = (color, top, left) => {
     if(color=='white' || color=='black'){
         var piece = document.createElement("div");
-        piece.innerHTML = `<div class="${color}ChessPiece" type = "chessPiece"
+        piece.innerHTML = `<div class="${color}ChessPiece" type = "chessPiece" id="piece${pieceID++}"
              style="position:absolute; top:${top+chessPiecesRadius}px; left:${left+chessPiecesRadius}px" >
         </div>`;
         goboard.appendChild(piece);
     }
 }
 
-const deletePiece = (top, left) => {
-    if(true){}
+const deletePiece = (targetID) => {
+    // all returns [45,45] if there is a piece
+    if(true){
+        var elem = document.getElementById(targetID);
+        elem.remove();   
+    }
 }
 
 const deleteOn = () => {
-    deleteFlag = !deleteFlag ;
+    deleteFlag = !deleteFlag;
     console.log("delete flag has been changed!");
 }
 
@@ -42,13 +47,12 @@ const boardClick = (data) => {
             "offsetX": data.offsetX,
             "offsetY": data.offsetY 
         });
+    }else{
+        console.log(data.target);
+        console.log(data.target.id)
+        socket.emit("transfer deleted piece",data.target.id);
     }
-    else{
-        socket.emit("transfer deleted piece pos",{
-            "offsetX": data.offsetX,
-            "offsetY": data.offsetY
-        });
-    }
+    
 }
 
 const gameStart = () => {
@@ -81,8 +85,12 @@ const gameStart = () => {
     });
 
     socket.on("draw piece", function(data){
-        placePiece(data["color"], data["offsetY"], data["offsetX"])
-    })
+        placePiece(data["color"], data["offsetY"], data["offsetX"]);
+    });
+
+    socket.on("delete piece", function(data){
+        deletePiece(data);
+    });
 
     socket.on("user disconnected", function (userName) {
         console.log(`User ${userName} Disconnected`)

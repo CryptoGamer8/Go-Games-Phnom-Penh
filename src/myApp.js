@@ -75,13 +75,12 @@ io.on("connection", function(socket) {
 		}
 	});
 
-	socket.on("transfer deleted piece pos",(pos)=>{
+	socket.on("transfer deleted piece",(targetID)=>{
 		//modify this
 		if(true){
-			pos = getPrecisePos(pos);
 			//tell if piece exist
 			if(true){
-				io.emit("delete piece", pos);
+				io.emit("delete piece", targetID);
 				console.log('delete piece being called');
 			}
 		}
