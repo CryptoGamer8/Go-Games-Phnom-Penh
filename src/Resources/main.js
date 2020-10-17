@@ -17,37 +17,58 @@ var deleteFlag = false;
 var chessPiecesRadius = -5;
 var pieceID = 0;
 
-const placePiece = (color, top, left) => {
-    if(color=='white' || color=='black'){
+/*  all data unit format in this js
+    {
+    "color":
+    "delFlag":
+    "offsetX":
+    "offsetY":
+    }
+*/
+
+
+const placePiece = (data) => {
+    console.log("placePiece being called");
+    if(data["color"]=='white' || data["color"]=='black'){
         var piece = document.createElement("div");
-        piece.innerHTML = `<div class="${color}ChessPiece" type = "chessPiece" id="piece${pieceID++}"
-             style="position:absolute; top:${top+chessPiecesRadius}px; left:${left+chessPiecesRadius}px" >
+        piece.innerHTML = `<div class="${data["color"]}ChessPiece" type = "chessPiece" id = "${data["id"]}"
+             style="position:absolute; top:${data["offsetY"]+chessPiecesRadius}px; left:${data["offsetX"]+chessPiecesRadius}px" >
         </div>`;
         goboard.appendChild(piece);
+        console.log(piece);
     }
 }
 
-const deletePiece = (targetID) => {
+const deletePiece = (id) => {
     if(true){
-        var elem = document.getElementById(targetID);
+        console.log(id);
+        var elem = document.getElementById(id);
         elem.remove();   
     }
 }
 
+// change delete flag
 const deleteOn = () => {
-    socket.emit("change delete flag", !deleteFlag)
     console.log("delete flag has been changed!");
+    deleteFlag = !deleteFlag;
+    alert('You can delete any chess piece now');
 }
 
 const boardClick = (data) => {
     if(!deleteFlag){
         socket.emit("place piece", {
             "color": user["color"], 
-            "offsetX": data.offsetX,
-            "offsetY": data.offsetY 
+            "delFlag": deleteFlag,
+            "offsetX": data.pageX - 25,
+            "offsetY": data.pageY -25
         });
-    }else{
-        socket.emit("transfer deleted piece",data.target.id);
+    }else{  
+        socket.emit("transfer deleted piece",{
+            "color": user["color"], 
+            "delFlag": deleteFlag,
+            "offsetX": data.pageX - 25,   //minus position of board image, be careful!
+            "offsetY": data.pageY - 25
+        });
     }
     
 }
@@ -63,6 +84,7 @@ const gameStart = () => {
     socket.emit("new visitor", `User${Math.floor(Math.random() * 1000000)}`);
 
     socket.on("new user", function (data) {
+        console.log("new user being called");
         if(!Object.keys(user).length==0){
             return;
         }
@@ -70,26 +92,29 @@ const gameStart = () => {
         goboard.addEventListener("click", boardClick);
     });
 
+//modify this with more precise position
     socket.on("board status", function(existPiece){
-        for(var i = 0;i<boardSize;i++){
-            for(var j=0;j<boardSize;j++){
-                if(existPiece[i][j]==1)
-                    placePiece('black',i,j);
-                else if(existPiece[i][j]==2)
-                    placePiece('white',i,j);
-            }
+        console.log("board status being called");
+        for(var key in existPiece){
+            var x = Math.round(key/100);
+            var y = Math.round(key%100);
+            var data = {
+                "color": existPiece[key]["color"],
+                "id": existPiece[key]["id"],
+                "offsetY":y*gridSize+YMargin,
+                "offsetX":x*gridSize+XMargin
+            };
+            placePiece(data);
         }
     });
 
-    socket.on("change client delete flag", function(_deleteFlag){
-        deleteFlag = _deleteFlag;
-    })
-
     socket.on("draw piece", function(data){
-        placePiece(data["color"], data["offsetY"], data["offsetX"]);
+        console.log("draw piece being called");
+        placePiece(data);
     });
 
     socket.on("delete piece", function(data){
+        console.log("delete piece being called");
         deletePiece(data);
     });
 

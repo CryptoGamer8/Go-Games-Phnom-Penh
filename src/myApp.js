@@ -30,7 +30,17 @@ var user = {
 	"color":"viewer"
 }
 
-var existPiece = createPieceRocords();
+/* single unit format:
+	"100x+y":{
+		"id":
+		"color":'"white",
+		"delFlag":"false"
+		}
+}*/
+var existPiece = {};
+
+var pieceID = 0;
+var moveUser = 0; // 0->black moveable; 1 -> white moveable.
 
 io.on("connection", function(socket) {
 	console.log("Socket connection was created");
@@ -59,36 +69,49 @@ io.on("connection", function(socket) {
 		activeUsers.add(user);
 
 		io.emit("new user",user); //emit user information
-		io.emit("board status", existPiece);
+		//modify this
+		io.emit("board status", existPiece); //emit board status 
 
 		console.log("new user socket being called");
 	});
 
+	/*  receive mouse click position and user color from one client, determine whether it is a 
+		valid click event. If true, add piece details to exsitPiece to maintain board status and 
+		emit 'precise pos' to client.
+
+		data : position of mouse click
+	*/
 	socket.on("place piece", (data) => {
+		console.log('place piece socket being called');
+		var x = Math.round((data["offsetX"] - board["XMargin"])/board["XSize"]);
+		var y = Math.round((data["offsetY"] - board["YMargin"])/board["YSize"]);
 		//modify this
-		console.log(data);
-		if (true){
+		if (canPlacePiece(x,y,data["color"])){
+			data = getArrayPos(data);
+			addToExistPiece(data);
 			data = getPrecisePos(data);
 			io.emit("draw piece", data);
-			console.log('place piece socket being called');
-			console.log(existPiece);
 		}
 	});
 
-	socket.on("transfer deleted piece",(targetID)=>{
+	/* receive mouse click position and user color from one client, determine whether it is a
+	   valid delete event. If true, delete piece details in exsitPiece and emit 'precise pos' to
+	   client.
+
+	   data : position of mouse click
+	*/
+	socket.on("transfer deleted piece",(data)=>{
 		//modify this
-		if(true){
+		if(data["delFlag"]==true){
 			//tell if piece exist
 			if(true){
-				io.emit("delete piece", targetID);
 				console.log('delete piece being called');
+				var id = delExistPiece(data);
+				if(id!=-1)
+					io.emit("delete piece", id);
 			}
 		}
 	});
-
-	socket.on("change delete flag", (deleteFlag) => {
-		io.emit("change client delete flag", deleteFlag);
-	})
 
 	socket.on("disconnect", () => {
 		activeUsers.delete(socket.userId);
@@ -97,41 +120,96 @@ io.on("connection", function(socket) {
 	});
 });
 
-const getPrecisePos = (data) => {
-	if(Object.keys(data).length!=3){
-		console.log("getPrecisePos data format is wrong");
-		return;
+/* get array position from [0,0] to [8,8], e.g. [1,1]
+input data format: {
+	"color":
+	"delFlag":
+	"offsetX":
+	"offsetY":
 	}
+*/
+const getArrayPos = (data) => {
 	var x = Math.round((data["offsetX"] - board["XMargin"])/board["XSize"]);
 	var y = Math.round((data["offsetY"] - board["YMargin"])/board["YSize"]);
-	
-	if(0 <=x< boardSize && 0<=y<boardSize){
-		if(data["color"]=='black'){
-			existPiece[x][y] = 1;
-		}
-		else if(data["color"]=='white'){
-			existPiece[x][y] = 2;
-		}
-		else{
-			existPiece[x][y] = 0;
-		}
-	}
+
 	return {
+		"id": pieceID++,
 		"color": data["color"],
-		"offsetX": x*board["XSize"] + board["XMargin"],
-		"offsetY": y*board["YSize"] + board["YMargin"]
+		"delFlag": data["delFlag"],
+		"X": x,
+		"Y": y
 	}
 }
 
-function createPieceRocords() {
-	var arr = new Array(boardSize);
-	for(var i = 0;i<boardSize;i++){
-		arr[i] = new Array(boardSize);
+/* add given piece to existPiece to maintain the board status
+   data: format same to output of getArrayPos
+*/
+const addToExistPiece = (data) => {
+	if(data["delFlag"]==false){
+		var index = 100*data["X"]+data["Y"];
+		existPiece[index] = {
+			"color":data["color"],
+			"delFlag":data["delFlag"],
+			"id":data["id"]
+		}
 	}
-	return arr;
 }
 
-//pieceData: [x,y,color] color: 1-> black, 0->white.
-const drawBoard = (pieceData) => {
+/*	delete given piece in existPiece to maintain the board status. If delete successfully, 
+	return id; else return -1.
+	data: mouse click position
+ */
+const delExistPiece = (data) => {
+	if(data["delFlag"]==true){
+		var x = Math.round((data["offsetX"] - board["XMargin"])/board["XSize"]);
+		var y = Math.round((data["offsetY"] - board["YMargin"])/board["YSize"]);
+		var index = 100*x+y;
+		console.log(existPiece);
+		console.log(index);
+		if(index in existPiece){
+			var id = existPiece[index]["id"];
+			delete existPiece[index];
+			return id;
+		}
+		else return -1;
+	}
+}
+/* get precise position from given data
+	input data format: {
+	"id":
+	"color" :
+	"delFlag" :
+	"X" : 0-8
+	"Y" : 0-8
+}*/
+const getPrecisePos = (data) => {
+	return {
+		"id": data["id"],
+		"color": data["color"],
+		"delFlag": data["delFlag"],
+		"offsetX": data["X"]*board["XSize"] + board["XMargin"],
+		"offsetY": data["Y"]*board["YSize"] + board["YMargin"]
+	}
+}
 
-} 
+/* input data format:
+	x,y: board index  0-8
+*/
+const canPlacePiece = (x,y,color) =>{
+	var index = 100*x + y;
+	if(pieceInBoard(x,y) && !(index in existPiece)){
+		if(color=='black' && moveUser==0){
+			moveUser = 1;
+			return true;
+		}
+		else if(color=='white' && moveUser==1){
+			moveUser = 0;
+			return true;
+		}
+	}
+	return false;
+}
+
+const pieceInBoard = (x,y) => {
+	return x>=0 && x<boardSize && y>=0 && y<boardSize;
+}
