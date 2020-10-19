@@ -16,7 +16,8 @@ app.use(express.static(publicPath));
 
 // Socket setup
 const io = socket(server);
-const activeUsers = new Set();
+const activeUsers = {};	// "userName":"color"
+const viewers = {}; // "userName":"color"
 
 var board = {
 	"XSize": 0,		//x grid size
@@ -59,14 +60,25 @@ io.on("connection", function(socket) {
 			"userName":userName,
 			"color": "viewer"
 			};
-		if(activeUsers.size==0) {
-			user.color="black";
-		}
-		else if(activeUsers.size==1) {
-			user.color="white";
-		}
 		// Assign a side to user, here size: 1->black, 2->white, 3+->viewer
-		activeUsers.add(user);
+		if(Object.keys(activeUsers).length==0) {
+			user.color="black";
+			activeUsers[user["userName"]] = user["color"];
+		}
+		else if(Object.keys(activeUsers).length==1) {
+			for(var key in activeUsers){
+				if(activeUsers[key]=="black"){
+					user.color="white";
+				}
+				else{
+					user.color="black";
+				}
+			}
+			activeUsers[user["userName"]] = user["color"];
+		}
+		else{
+			viewers[user["userName"]] = "viewer";
+		}
 
 		io.emit("new user",user); //emit user information
 		//modify this
@@ -113,10 +125,15 @@ io.on("connection", function(socket) {
 		}
 	});
 
-	socket.on("disconnect", (user) => {
+	socket.on("user disconnect", (user) => {
 		console.log("disconnect socket being called");
 		console.log(user);
-		activeUsers.delete(user["userName"]);
+		if(user["color"]=="viewer"){
+			delete viewers[user["userName"]];
+		}
+		else{
+			delete activeUsers[user["userName"]];
+		}
 		console.log(activeUsers);
 	});
 });

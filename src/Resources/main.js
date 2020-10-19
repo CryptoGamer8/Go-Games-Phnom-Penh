@@ -93,6 +93,7 @@ const gameStart = () => {
             return;
         }
         user = data;
+        alert("You are "+user["color"]+".");
         goboard.addEventListener("click", boardClick);
     });
 
@@ -123,10 +124,7 @@ const gameStart = () => {
     });
 
     window.onbeforeunload = function(){
-        console.log(user);
-        $.ajaxSetup({ async : false });
-        socket.emit("disconnect", user);
-        alert("my window is closing.");
+        socket.emit("user disconnect",user);
     }
 
 
