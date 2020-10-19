@@ -113,10 +113,11 @@ io.on("connection", function(socket) {
 		}
 	});
 
-	socket.on("disconnect", () => {
-		activeUsers.delete(socket.userId);
-		io.emit("user disconnected", socket.userId);
+	socket.on("disconnect", (user) => {
 		console.log("disconnect socket being called");
+		console.log(user);
+		activeUsers.delete(user["userName"]);
+		console.log(activeUsers);
 	});
 });
 

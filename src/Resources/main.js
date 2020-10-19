@@ -51,7 +51,11 @@ const deletePiece = (id) => {
 const deleteOn = () => {
     console.log("delete flag has been changed!");
     deleteFlag = !deleteFlag;
-    alert('You can delete any chess piece now');
+    if(deleteFlag == true)
+        alert('You can delete any chess piece now');
+    else{
+        alert('You can place piece now');
+    }
 }
 
 const boardClick = (data) => {
@@ -118,9 +122,14 @@ const gameStart = () => {
         deletePiece(data);
     });
 
-    socket.on("user disconnected", function (userName) {
-        console.log(`User ${userName} Disconnected`)
-    });
+    window.onbeforeunload = function(){
+        console.log(user);
+        $.ajaxSetup({ async : false });
+        socket.emit("disconnect", user);
+        alert("my window is closing.");
+    }
+
+
 };
 
 //Game starts here
